@@ -1,0 +1,18 @@
+button {
+    margin: auto;
+}
+.makeBlock {
+    display: block;
+}
+.input {
+    margin: auto;
+    margin-bottom: 20px;
+}
+#form {
+    padding: 10px 0px 10px 0px;
+    background-color: beige;
+    width: 500px;
+    text-align: center;
+    margin: auto;
+    border-radius: 5%;
+}
