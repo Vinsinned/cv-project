@@ -1,5 +1,11 @@
+body {
+    margin: 0px;
+}
 button {
     margin: auto;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
 }
 .makeBlock {
     display: block;
@@ -7,10 +13,28 @@ button {
 .input {
     margin: auto;
     margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    height: 20px;
+    border: none;
+
+}
+.headers {
+    width: 500px;
+    margin: auto;
+    border-bottom: 1px solid black;
+}
+.cvSection {
+    overflow: hidden;
+    text-align: center;
+}
+.flex {
+    display: flex;
+    justify-content: space-around;
 }
 #form {
     padding: 10px 0px 10px 0px;
-    background-color: beige;
+    background-color: #FCA311;
     width: 500px;
     text-align: center;
     display: inline;

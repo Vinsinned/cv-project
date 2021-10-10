@@ -2,8 +2,8 @@ import React from "react"
 
 const Practical = (props) => {
     return (
-        <div>
-            <h1>Practical</h1>
+        <div className="cvSection">
+            <h1 className="headers">Practical</h1>
             <p>{props.information[0]}</p>
             <p>{props.information[1]}</p>
             <p>{props.information[2]}</p>
