@@ -18,7 +18,6 @@ class App extends Component {
       major: '',
       date: '',
       education: ['Columbia University', 'Bachelor, Computer Science', '2015-2019'],
-      practicalInputs: ['1', '2', '3', [2, 4, 2]],
       company0: '',
       position0: '',
       task0: '',
@@ -50,7 +49,9 @@ class App extends Component {
         */
       ],
       practicals: 0,
-      practical: ['Vinson Incorporated', 'Senior Web Developer', 'helped to build the eiffel tower', '2010-2020'],
+      //for looping
+      loopPracticals: [1],
+      practical: [],
     }
 
     this.submit = this.submit.bind(this);
@@ -63,22 +64,21 @@ class App extends Component {
     console.log(this.state[e.target.id])
   }
   submit = (e) => {
-    //const { name, email, phone, school, major, date, company, position, task, duration, practicals } = this.state;
+    const { name, email, phone, school, major, date} = this.state;
     const form = document.querySelector('#form');
     document.body.style.cssText = 'background-color: white'
     form.innerHTML = '';
     form.id = 'gone';
-    console.log(this.state.company0)
-    console.log(this.state.position0)
-    console.log(this.state.task0)
-    console.log(this.state.duration0)
-    /*
+    console.log(this.state.practicalInputs)
     this.setState({
       general: [name, email, phone],
       education: [school, major, date],
-      practical: [company, position, task, duration],
     });
-    */
+    for (let i = 0; i < this.state.loopPracticals.length; i++) {
+      this.setState({
+        practical: this.state.practical.concat(this.state[`company${i}`], this.state[`task${i}`], this.state[`position${i}`], this.state[`duration${i}`])
+      })
+    }
   }
   increment = (e) => {
     let { practicals } = this.state;
@@ -86,6 +86,7 @@ class App extends Component {
     //this order in order to make the final
     this.setState({
       practicals: practicals += 1,
+      loopPracticals: this.state.loopPracticals.concat(1)
     })
     this.setState({
       [`company${practicals}`]: '',
@@ -125,6 +126,7 @@ class App extends Component {
       education, practical } = this.state
     return (
       <div id="mamaDiv">
+        {console.log(this.state.practical)}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <form id="form">
           <div className="formSection">

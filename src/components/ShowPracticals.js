@@ -29,7 +29,6 @@ const ShowPracticals = (props) => {
       </div>
     )
   }
-  console.log(props.inputs)
     return (
       <div>
         {test}
