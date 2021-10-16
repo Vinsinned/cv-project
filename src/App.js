@@ -3,14 +3,12 @@ import './styles/App.css';
 import General from "./components/GeneralInfo";
 import Education from "./components/EducationExp";
 import Practical from "./components/PracticalExp";
-import AddPractical from "./components/addPractical";
 
 class App extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      practicals: 1,
       clicked: false,
       name: '',
       email: '',
@@ -20,10 +18,38 @@ class App extends Component {
       major: '',
       date: '',
       education: ['Columbia University', 'Bachelor, Computer Science', '2015-2019'],
-      company: '',
-      position: '',
-      task: '',
-      duration: '',
+      practicalInputs: ['1', '2', '3', [2, 4, 2]],
+      company0: '',
+      position0: '',
+      task0: '',
+      duration0: '',
+      displayPracticals: [
+        /*
+        <div className="formSection">
+          <div className="flex">
+            <div>
+              <label htmlFor={`company1`} className="makeBlock">Previous company</label>
+              <input type="text" id={`company1`} className="makeBlock input"/>
+            </div>
+            <div>
+              <label htmlFor={`position1`} className="makeBlock">Position</label>
+              <input type="text" id={`position1`} className="makeBlock input"/>
+            </div>
+          </div>
+          <div className="flex">
+            <div>
+              <label htmlFor={`task1`} className="makeBlock">Main tasks</label>
+              <input type="text" id={`task1`} className="makeBlock input"/>
+            </div>
+            <div>
+              <label htmlFor={`duration1`} className="makeBlock">How long did you work</label>
+              <input type="text" id={`duration1`} className="makeBlock input"/>
+            </div>
+          </div>
+        </div>
+        */
+      ],
+      practicals: 0,
       practical: ['Vinson Incorporated', 'Senior Web Developer', 'helped to build the eiffel tower', '2010-2020'],
     }
 
@@ -34,35 +60,72 @@ class App extends Component {
     this.setState({
       [e.target.id]: e.target.value
     });
+    console.log(this.state[e.target.id])
   }
   submit = (e) => {
-    const { name, email, phone, school, major, date, company, position, task, duration, practicals} = this.state;
+    //const { name, email, phone, school, major, date, company, position, task, duration, practicals } = this.state;
     const form = document.querySelector('#form');
     document.body.style.cssText = 'background-color: white'
     form.innerHTML = '';
     form.id = 'gone';
-    console.log(company)
-    console.log(practicals)
+    console.log(this.state.company0)
+    console.log(this.state.position0)
+    console.log(this.state.task0)
+    console.log(this.state.duration0)
     /*
     this.setState({
       general: [name, email, phone],
       education: [school, major, date],
-      practical: [company, position, task, duration]
+      practical: [company, position, task, duration],
     });
     */
   }
   increment = (e) => {
-    let { practicals } = this.state
+    let { practicals } = this.state;
+    console.log(practicals)
+    //this order in order to make the final
     this.setState({
-      practicals: practicals += 1
+      practicals: practicals += 1,
     })
+    this.setState({
+      [`company${practicals}`]: '',
+      [`task${practicals}`]: '',
+      [`position${practicals}`]: '',
+      [`duration${practicals}`]: '',
+    })
+    this.setState({
+      displayPracticals: this.state.displayPracticals.concat(
+        <div className="formSection" key={practicals}>
+            <div className="flex">
+              <div>
+                <label htmlFor={`company${practicals}`} className="makeBlock">Previous company</label>
+              <input type="text" id={`company${practicals}`} className="makeBlock input" onChange={this.handleChange} value={this.state.company1}/>
+              </div>
+              <div>
+                <label htmlFor={`position${practicals}`} className="makeBlock">Position</label>
+                <input type="text" id={`practicals}`} className="makeBlock input" onChange={this.handleChange} value={this.state.position1}/>
+              </div>
+            </div>
+            <div className="flex">
+              <div>
+                <label htmlFor={`task${practicals}`} className="makeBlock">Main tasks</label>
+              <input type="text" id={`task${practicals}`} className="makeBlock input" onChange={this.handleChange} value={this.state.task1}/>
+              </div>
+              <div>
+                <label htmlFor={`duration${practicals}`} className="makeBlock">How long did you work</label>
+                <input type="text" id={`duration${practicals}`} className="makeBlock input" onChange={this.handleChange} value={this.state.duration1}/>
+              </div>
+            </div>
+          </div>
+      )
+    });
   }
   render() {
-    const { practicals, name, email, phone, general, school, major, date,
-      education, company, position, task, duration, practical } = this.state
+    const { name, email, phone, general, school, major, date,
+      education, practical } = this.state
     return (
-      <div>
-        <AddPractical values={[company, position, task, duration]} handleChange={this.handleChange} idIdentifier={practicals} />
+      <div id="mamaDiv">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <form id="form">
           <div className="formSection">
             <h2>General Information</h2>
@@ -98,27 +161,31 @@ class App extends Component {
 
           <div className="formSection">
             <h2>Practical Information</h2>
-            <div className="flex">
-              <div>
-                <label htmlFor="company0" className="makeBlock">Previous company</label>
-                <input type="text" id="company0" className="makeBlock input" onChange={this.handleChange} value={company} />
-              </div>
-              <div>
-                <label htmlFor="position0" className="makeBlock">Position</label>
-                <input type="text" id="position0" className="makeBlock input" onChange={this.handleChange} value={position} />
-              </div>
+                    <div className="formSection">
+          <div className="flex">
+            <div>
+              <label htmlFor={`company0`} className="makeBlock">Previous company</label>
+                  <input type="text" id={`company0`} className="makeBlock input" onChange={this.handleChange} value={this.state.company0}/>
             </div>
-            <div className="flex">
-              <div>
-                <label htmlFor="task0" className="makeBlock">Main tasks</label>
-                <input type="text" id="task0" className="makeBlock input" onChange={this.handleChange} value={task} />
-              </div>
-              <div>
-                <label htmlFor="duration0" className="makeBlock">How long did you work</label>
-                <input type="text" id="duration0" className="makeBlock input" onChange={this.handleChange} value={duration} />
-              </div>
+            <div>
+              <label htmlFor={`position0`} className="makeBlock">Position</label>
+              <input type="text" id={`position0`} className="makeBlock input" onChange={this.handleChange} value={this.state.position0}/>
             </div>
           </div>
+          <div className="flex">
+            <div>
+              <label htmlFor={`task0`} className="makeBlock">Main tasks</label>
+              <input type="text" id={`task0`} className="makeBlock input" onChange={this.handleChange} value={this.state.task0}/>
+            </div>
+            <div>
+              <label htmlFor={`duration0`} className="makeBlock">How long did you work</label>
+              <input type="text" id={`duration0`} className="makeBlock input" onChange={this.handleChange} value={this.state.duration0}/>
+            </div>
+          </div>
+            </div>
+            {this.state.displayPracticals}
+          </div>
+          <span className="material-icons" id="addIcon" onClick={this.increment}>add</span>
 
           <button type="submit" className="makeBlock" onClick={this.submit}>
             Submit

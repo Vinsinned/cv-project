@@ -3,9 +3,14 @@ import React, {Component} from "react"
 class AddPractical extends Component {
     constructor(props) {
         super(props);
+
+        this.setState({
+            numChildren: 0
+        })
     }
     render() {
         const { company, position, task, duration } = this.props.values;
+        console.log(this.props.divDiv);
         return (
             <div className="formSection">
             <div className="flex">
