@@ -61,7 +61,6 @@ class App extends Component {
     this.setState({
       [e.target.id]: e.target.value
     });
-    console.log(this.state[e.target.id])
   }
   submit = (e) => {
     const { name, email, phone, school, major, date} = this.state;
@@ -69,20 +68,21 @@ class App extends Component {
     document.body.style.cssText = 'background-color: white'
     form.innerHTML = '';
     form.id = 'gone';
-    console.log(this.state.practicalInputs)
     this.setState({
       general: [name, email, phone],
       education: [school, major, date],
     });
+    //make a array, append every input, and then set state with array
+    let practicalArray = [];
     for (let i = 0; i < this.state.loopPracticals.length; i++) {
-      this.setState({
-        practical: this.state.practical.concat(this.state[`company${i}`], this.state[`task${i}`], this.state[`position${i}`], this.state[`duration${i}`])
-      })
+      practicalArray.push(this.state[`company${i}`], this.state[`position${i}`], this.state[`task${i}`], this.state[`duration${i}`])
     }
+    this.setState({
+      practical: practicalArray
+    })
   }
   increment = (e) => {
     let { practicals } = this.state;
-    console.log(practicals)
     //this order in order to make the final
     this.setState({
       practicals: practicals += 1,
@@ -126,7 +126,6 @@ class App extends Component {
       education, practical } = this.state
     return (
       <div id="mamaDiv">
-        {console.log(this.state.practical)}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <form id="form">
           <div className="formSection">
