@@ -9,6 +9,8 @@ class App extends Component {
     super(props);
     
     this.state = {
+      //for detecting when
+      showEdit: false,
       clicked: false,
       name: '',
       email: '',
@@ -23,30 +25,6 @@ class App extends Component {
       task0: '',
       duration0: '',
       displayPracticals: [
-        /*
-        <div className="formSection">
-          <div className="flex">
-            <div>
-              <label htmlFor={`company1`} className="makeBlock">Previous company</label>
-              <input type="text" id={`company1`} className="makeBlock input"/>
-            </div>
-            <div>
-              <label htmlFor={`position1`} className="makeBlock">Position</label>
-              <input type="text" id={`position1`} className="makeBlock input"/>
-            </div>
-          </div>
-          <div className="flex">
-            <div>
-              <label htmlFor={`task1`} className="makeBlock">Main tasks</label>
-              <input type="text" id={`task1`} className="makeBlock input"/>
-            </div>
-            <div>
-              <label htmlFor={`duration1`} className="makeBlock">How long did you work</label>
-              <input type="text" id={`duration1`} className="makeBlock input"/>
-            </div>
-          </div>
-        </div>
-        */
       ],
       practicals: 0,
       //for looping
@@ -58,19 +36,27 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange = (e) => {
+    console.log(e.target.id)
     this.setState({
       [e.target.id]: e.target.value
     });
+    console.log(this.state[e.target.id])
   }
   submit = (e) => {
+    e.preventDefault();
     const { name, email, phone, school, major, date} = this.state;
     const form = document.querySelector('#form');
-    document.body.style.cssText = 'background-color: white'
-    form.innerHTML = '';
-    form.id = 'gone';
+    document.body.style.cssText = 'background-color: white';
+    //save form elements for later
+    this.setState({
+      innerHTMLs: form.innerHTML,
+      content: [],
+    })
+    form.classList.add('hide');
     this.setState({
       general: [name, email, phone],
       education: [school, major, date],
+      showEdit: true,
     });
     //make a array, append every input, and then set state with array
     let practicalArray = [];
@@ -121,12 +107,22 @@ class App extends Component {
       )
     });
   }
+  editClick = (e) => {
+    const form = document.querySelector('#form');
+    if (this.state.showEdit === true) {
+      form.classList.remove('hide');
+    }
+  }
   render() {
     const { name, email, phone, general, school, major, date,
       education, practical } = this.state
     return (
       <div id="mamaDiv">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <div id="navBar">
+          <h1 id="title">CV Application</h1>
+          <span className="material-icons" onClick={this.editClick}>edit</span>
+        </div>
         <form id="form">
           <div className="formSection">
             <h2>General Information</h2>
