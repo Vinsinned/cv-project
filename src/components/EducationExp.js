@@ -2,11 +2,11 @@ import React from "react"
 
 const Education = (props) => {
     return (
-        <div className="cvSection">
-            <h1 className="headers">Education</h1>
-            <p>{props.information[0]}</p>
-            <p>{props.information[1]}</p>
-            <p>{props.information[2]}</p>
+        <div className="cvSection" id="educationSection">
+            <p id="educationHeader">Education</p>
+            <p className="educationElement">{props.information[0]}1</p>
+            <p className="educationElement">{props.information[1]}1</p>
+            <p className="educationElement">{props.information[2]}1</p>
         </div>
     )
 }

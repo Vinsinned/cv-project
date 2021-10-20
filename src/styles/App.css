@@ -22,7 +22,6 @@ button {
 .headers {
     width: 500px;
     margin: auto;
-    border-bottom: 1px solid black;
 }
 .cvSection {
     overflow: hidden;
@@ -35,9 +34,22 @@ button {
 .hide {
     visibility: hidden;
 }
+.identifier {
+    background-color: #37392E;
+    color: white;
+    width: 70px;
+    margin-right: 20px;
+}
+.generalInformation {
+    display: flex;
+}
+.educationElement {
+    display: flex;
+    margin-left: 50px;
+}
 #form {
     padding: 10px 0px 10px 0px;
-    background-color: #FCA311;
+    background-color: #37392E;
     width: 500px;
     text-align: center;
     display: inline;
@@ -49,6 +61,7 @@ button {
     right: 0; 
     margin-left: auto; 
     margin-right: auto; 
+    color: white;
 }
 #addIcon {
     cursor: pointer;
@@ -56,7 +69,51 @@ button {
 #navBar {
     display: flex;
     justify-content: space-between;
+    background-color: #28AFB0;
+}
+#practicalHeader {
+    background-color: #DDCECD;
+    font-size: 30px;
+    width: 300px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+#generalSection {
+    display: flex;
+    background-color: #19647E;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
 }
 #title {
     margin-left: 20px;
+}
+#picture {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+#educationSection {
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+}
+#educationHeader {
+    display: flex;
+    margin-left: 20px;
+    background-color: #DDCECD;
+    font-size: 20px;
+    width: 140px;
+    justify-content: center;
+}
+#grids {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+}
+.head {
+    margin-left: 20px;
+    font-weight: bold;
+    height: 200px;
+    width: 200px;
+    background: #28AFB0;
 }
